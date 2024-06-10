@@ -1,4 +1,4 @@
-const Logo = ({ }) => {
+const Logo = () => {
     return <div className="w-40 h-40 relative">
         <div className="absolute top-0 left-0 w-full h-full z-0">
             <img src="/africa.png" alt="africa logo" className="w-full opacity-60 h-full object-contain" />

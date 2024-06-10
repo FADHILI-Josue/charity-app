@@ -6,7 +6,10 @@ const Stats = () => {
   const { state } = useEth();
 
   function getAmount() {
-    return state?.web3?.utils?.fromWei(amount.toString(), "ether");
+    return parseInt(
+      state?.web3?.utils?.fromWei(amount ? amount.toString() : "0", "ether") ??
+        0
+    );
   }
 
   const getTotalDonations = async () => {
