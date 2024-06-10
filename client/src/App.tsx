@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 import Layout from "./components/Layout.tsx";
 import EthProvider from "./contexts/EthContext/EthProvider.tsx";
 import DonatePage from "./pages/DonatePage.tsx";
@@ -7,6 +8,7 @@ import HomePage from "./pages/HomePage.tsx";
 function App() {
   return (
     <BrowserRouter>
+      <Toaster />
       <EthProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />

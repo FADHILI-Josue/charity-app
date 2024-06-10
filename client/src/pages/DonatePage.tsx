@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { toast } from "sonner";
 import Layout from "../components/Layout";
 import MaxWidthWrapper from "../components/MaxWidthWrapper";
 import Stat from "../components/Stat";
@@ -15,6 +16,7 @@ const DonatePage: FC = () => {
       from: state?.accounts[0],
       value: state?.web3.utils.toWei(amount, "ether"),
     });
+    toast.success("Thank you for donating.");
   };
 
   if (!state?.contract || !state?.artifact) {

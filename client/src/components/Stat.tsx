@@ -5,6 +5,10 @@ const Stats = () => {
   const [amount, setAmount] = useState(0);
   const { state } = useEth();
 
+  function getAmount() {
+    return state?.web3?.utils?.fromWei(amount.toString(), "ether");
+  }
+
   const getTotalDonations = async () => {
     const total = await state?.contract?.methods.totalDonations().call();
     setAmount(total);
@@ -39,6 +43,7 @@ const Stats = () => {
   if (!state?.contract || !state?.artifact) {
     return <>Loading...</>;
   }
+
   return (
     <div className="w-full absolute z-10 bg-primary h-32 bottom-0 left-0">
       <div className="relative w-fit  -translate-y-1/2 -translate-x-1/2 left-1/2 bg-primary-red rounded-3xl flex items-center">
@@ -61,7 +66,9 @@ const Stats = () => {
           />
           <div className="relative flex flex-col">
             <span className="text-primary">{"Kids who got sponsored"}</span>
-            <span className="font-bold text-3xl font-sans">{35608}</span>
+            <span className="font-bold text-3xl font-sans">
+              {getAmount() / 0.001}
+            </span>
           </div>
         </div>
         <div className="p-5 flex items-center gap-5">
@@ -73,7 +80,7 @@ const Stats = () => {
           <div className="relative flex flex-col">
             <span className="text-primary">{"Money raised so far"}</span>
             <span className="font-bold text-3xl font-sans">
-              {state?.web3?.utils?.fromWei(amount.toString(), "ether")} ETH
+              {getAmount()} ETH
             </span>
           </div>
         </div>
